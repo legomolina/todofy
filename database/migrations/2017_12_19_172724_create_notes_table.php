@@ -20,6 +20,7 @@ class CreateNotesTable extends Migration
             $table->integer("position");
             $table->boolean("done");
             $table->integer("user_id");
+            $table->timestamps();
         });
     }
 
