@@ -17,9 +17,10 @@ class CreateNotesTable extends Migration
             $table->increments("id");
             $table->string("title");
             $table->string("body");
-            $table->integer("position");
-            $table->boolean("done");
+            //$table->integer("position");
+            //$table->boolean("done");
             $table->integer("user_id");
+            $table->string("color");
             $table->timestamps();
         });
     }
