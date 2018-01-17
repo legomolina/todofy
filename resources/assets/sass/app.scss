@@ -1,9 +1,82 @@
-
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600|Roboto:300,400,700');
+@import "normalize";
 
 // Variables
 @import "variables";
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  font-family: "Roboto", "Raleway", sans-serif;
+
+  --mdc-theme-primary-dark: #455A64;
+  --mdc-theme-primary-light: #CFD8DC;
+  --mdc-theme-primary: #607D8B;
+  --mdc-theme-text-primary-on-primary: #FFFFFF;
+  --mdc-theme-text-primary-on-secondary: #FFFFFF;
+  --mdc-theme-secondary: #FF5722;
+}
+
+a.add-note {
+  color: var(--mdc-theme-secondary, #FF5722);
+  text-decoration: none;
+}
+
+.app-fab--absolute {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+@media(min-width: 1024px) {
+  .app-fab--absolute {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+div.container {
+  margin: 0 auto;
+  width: 80%;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.card {
+  min-width: 320px;
+  max-width: 480px;
+
+  margin: 24px;
+
+  & .header {
+    height: 12.313rem;
+    background-color: #2196f3;
+  }
+}
+
+.mdc-card__primary {
+  overflow: auto;
+  height: 100px;
+}
+
+.note-form {
+  width: 500px;
+
+  & .mdc-text-field {
+    width: 100%;
+  }
+}
+
+.mdc-dialog__surface {
+  min-width: 450px;
+  max-width: 450px;
+}

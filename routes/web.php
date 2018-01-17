@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'NotesController@renderMain');
+
+//create
+Route::get('/note', 'NotesController@renderAddNote');
+Route::post('/note', 'NotesController@addNote');
+
+//edit id
+Route::get('/note/{id}', 'NotesController@renderEditNote');
+Route::post('/note/{id}', 'NotesController@editNote');
+
+//del
+Route::delete('/note/{id}', 'NotesController@deleteNote');
