@@ -23,13 +23,26 @@
                     </div>
                 </section>
 
+                <div class="mdc-form-field visibility-checkbox">
+                    <div class="mdc-checkbox">
+                        <input type="checkbox" value="1" @if (isset($note) && $note->visibility == 1) checked @endif id="basic-checkbox" name="visibility" class="mdc-checkbox__native-control">
+                        <div class="mdc-checkbox__background">
+                            <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+                            </svg>
+                            <div class="mdc-checkbox__mixedmark"></div>
+                        </div>
+                    </div>
+                    <label for="basic-checkbox" style="margin-top: 2px">Pública</label>
+                </div>
+
                 @if (isset($note))
                     <input type="hidden" name="_method" value="PUT">
                 @endif
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                <button class="mdc-button mdc-button--raised mdc-ripple-upgraded" data-mdc-auto-init="MDCRipple">
+                <button class="mdc-button mdc-button--raised mdc-ripple-upgraded" style="margin-right: 20px;" data-mdc-auto-init="MDCRipple">
                     {{ $options["action_text"] }}
                 </button>
 

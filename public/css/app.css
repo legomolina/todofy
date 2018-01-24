@@ -545,6 +545,10 @@ div.container {
   min-width: 320px;
   max-width: 480px;
   margin: 24px;
+  background-color: transparent;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .card .header {
@@ -581,5 +585,21 @@ div.container {
 .mdc-dialog__surface {
   min-width: 450px;
   max-width: 450px;
+}
+
+.visibility-checkbox {
+  width: 100%;
+  margin: 2px 0 10px;
+}
+
+.mdc-card__actions {
+  position: relative;
+}
+
+.card-visibility {
+  color: var(--mdc-theme-secondary, #FF5722);
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
 }
 

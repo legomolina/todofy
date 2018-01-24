@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotesTable extends Migration
+class AddVisibilityToNotes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateNotesTable extends Migration
      */
     public function up()
     {
-        Schema::create("notes", function (Blueprint $table) {
-            $table->increments("id");
-            $table->string("title");
-            $table->text("body");
-            $table->integer("user_id");
-            $table->string("color");
-            $table->timestamps();
+        Schema::table("notes", function(Blueprint $table) {
+            $table->tinyInteger("visibility");
         });
     }
 
@@ -30,6 +25,8 @@ class CreateNotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("notes");
+        Schema::table("notes", function(Blueprint $table) {
+            $table->dropColumn("visibility");
+        });
     }
 }

@@ -27,6 +27,8 @@
                 <a href="/login" class="mdc-toolbar__icon" aria-label="Login">Login</a>
                 <a href="/register" class="mdc-toolbar__icon" aria-label="Register">Registrarse</a>
             @else
+                <span class="mdc-toolbar__title" style="font-size: 1em;">Bienvenido {{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
+
                 <a href="/logout" class="material-icons mdc-toolbar__icon" aria-label="Cerrar sesión"
                    alt="Cerrar sesión">exit_to_app</a>
             @endif

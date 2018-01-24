@@ -16,7 +16,7 @@ class NotesController extends Controller
 
     public function renderMain()
     {
-        $notes = Note::where("user_id", Auth::id())->get();
+        $notes = Note::where("user_id", Auth::id())->orWhere("visibility", 1)->get();
 
         return view("partials/cards", ["notes" => $notes]);
     }
@@ -40,6 +40,7 @@ class NotesController extends Controller
 
         $title = $request->input("title");
         $body = $request->input("content");
+        $visibility = $request->input("visibility") === null ? 0 : 1;
 
         $note = new Note();
         $note->title = $title;
@@ -47,6 +48,7 @@ class NotesController extends Controller
         $note->user_id = Auth::id();
         $note->color = $colors[random_int(0, count($colors) - 1)];
         $note->token = md5(time());
+        $note->visibility = $visibility;
 
         $note->save();
 
@@ -68,10 +70,12 @@ class NotesController extends Controller
     {
         $title = $request->input("title");
         $body = $request->input("content");
+        $visibility = $request->input("visibility") === null ? 0 : 1;
 
         $note = Note::where("token", $id)->first();
         $note->title = $title;
         $note->body = $body;
+        $note->visibility = $visibility;
 
         $note->save();
 

@@ -16,14 +16,24 @@
                         </section>
                     </section>
 
+
                     <section class="mdc-card__actions">
-                        <a href="/note/{{ $note->token }}"
-                           class="mdc-button mdc-button--compact mdc-ripple-surface mdc-card__action"
-                           data-mdc-auto-init="MDCRipple">Modificar
-                        </a>
-                        <button class="mdc-button mdc-button--raised mdc-ripple-surface button-red mdc-card__action remove-note"
-                                data-mdc-auto-init="MDCRipple">Borrar
-                        </button>
+                        @if ($note->user_id == \Illuminate\Support\Facades\Auth::id())
+                            <a href="/note/{{ $note->token }}"
+                               class="mdc-button mdc-button--compact mdc-ripple-surface mdc-card__action"
+                               data-mdc-auto-init="MDCRipple">Modificar
+                            </a>
+                            <button class="mdc-button mdc-button--raised mdc-ripple-surface button-red mdc-card__action remove-note"
+                                    data-mdc-auto-init="MDCRipple">Borrar
+                            </button>
+
+                            @if ($note->visibility == 1)
+                                <i class="material-icons card-visibility">language</i>
+                            @endif
+
+                        @else
+                            <div style="position: absolute; margin-top: 20px; font-size: 0.8em;"><em>Usuario: {{ $note->user->name }}</em></div>
+                        @endif
                     </section>
                 </div>
             @empty

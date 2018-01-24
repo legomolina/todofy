@@ -57,6 +57,10 @@ div.container {
 
   margin: 24px;
 
+  background-color: transparent;
+
+  justify-content: flex-start;
+
   & .header {
     height: 12.313rem;
     background-color: #2196f3;
@@ -88,4 +92,20 @@ div.container {
 .mdc-dialog__surface {
   min-width: 450px;
   max-width: 450px;
+}
+
+.visibility-checkbox {
+  width: 100%;
+  margin: 2px 0 10px;
+}
+
+.mdc-card__actions {
+  position: relative;
+}
+
+.card-visibility {
+  color: var(--mdc-theme-secondary, #FF5722);
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
 }
