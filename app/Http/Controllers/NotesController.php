@@ -4,10 +4,16 @@ namespace todofy\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use todofy\Note;
+use Illuminate\Support\Facades\Auth;
+use todofy\Models\Note;
 
 class NotesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function renderMain()
     {
         $notes = Note::where("user_id", 0)->get();

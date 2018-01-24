@@ -19,7 +19,11 @@ Route::post('/note', 'NotesController@addNote');
 
 //edit id
 Route::get('/note/{id}', 'NotesController@renderEditNote');
-Route::post('/note/{id}', 'NotesController@editNote');
+Route::put('/note/{id}', 'NotesController@editNote');
 
 //del
 Route::delete('/note/{id}', 'NotesController@deleteNote');
+
+Route::get('/logout', 'Auth\LoginController@logout');
+
+Auth::routes();

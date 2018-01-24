@@ -1,6 +1,6 @@
 <?php
 
-namespace todofy;
+namespace todofy\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

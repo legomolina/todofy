@@ -68,8 +68,17 @@ div.container {
   height: 100px;
 }
 
-.note-form {
-  width: 500px;
+.note-form, .login-form {
+  width: 350px;
+
+  .center-middle {
+    margin-top: 20px;
+
+    & > input {
+      display: block;
+      margin: 0 auto;
+    }
+  }
 
   & .mdc-text-field {
     width: 100%;

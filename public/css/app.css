@@ -557,11 +557,24 @@ div.container {
   height: 100px;
 }
 
-.note-form {
-  width: 500px;
+.note-form,
+.login-form {
+  width: 350px;
 }
 
-.note-form .mdc-text-field {
+.note-form .center-middle,
+.login-form .center-middle {
+  margin-top: 20px;
+}
+
+.note-form .center-middle > input,
+.login-form .center-middle > input {
+  display: block;
+  margin: 0 auto;
+}
+
+.note-form .mdc-text-field,
+.login-form .mdc-text-field {
   width: 100%;
 }
 

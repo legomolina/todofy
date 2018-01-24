@@ -23,7 +23,13 @@
         </section>
 
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-            <a href="#" class="material-icons mdc-toolbar__icon" aria-label="Bookmark this page" alt="Cerrar sesión">exit_to_app</a>
+            @if (\Illuminate\Support\Facades\Auth::guest())
+                <a href="/login" class="mdc-toolbar__icon" aria-label="Login">Login</a>
+                <a href="/register" class="mdc-toolbar__icon" aria-label="Register">Registrarse</a>
+            @else
+                <a href="/logout" class="material-icons mdc-toolbar__icon" aria-label="Cerrar sesión"
+                   alt="Cerrar sesión">exit_to_app</a>
+            @endif
         </section>
     </div>
 </header>

@@ -3,7 +3,11 @@
 @section("main-content")
     <main role="main" class="mdc-toolbar-fixed-adjust">
         <div class="container">
-            <h1 style="width: 100%; text-align: center" class="mdc-typography--display3">Crear nota</h1>
+            <h1 style="width: 100%; text-align: center" class="mdc-typography--display3">@if (isset($note))
+                    Editar
+                @else
+                    Crear
+                @endif nota</h1>
 
             <form action="@if(isset($note))/note/{{ $note->token }} @else /note @endif" method="post" class="note-form">
                 <div class="mdc-text-field mdc-text-field--upgraded">
@@ -21,6 +25,7 @@
                     </div>
                 </section>
 
+                <input name="_method" type="hidden" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <button class="mdc-button mdc-button--raised mdc-ripple-upgraded" data-mdc-auto-init="MDCRipple">
