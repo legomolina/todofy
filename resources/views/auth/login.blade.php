@@ -25,12 +25,12 @@
                     <div class="mdc-text-field mdc-text-field--upgraded">
                         <input aria-controls="my-text-field-helper-text" id="password" type="password"
                                class="mdc-text-field__input" name="password" required>
-                        <label for="password" class="mdc-text-field__label">Password</label>
+                        <label for="password" class="mdc-text-field__label">Contraseña</label>
                         <div class="mdc-text-field__bottom-line" style="transform-origin: 45.5px center"></div>
 
-                        @if ($errors->has('email'))
+                        @if ($errors->has('password'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                         @endif
                     </div>
@@ -39,6 +39,7 @@
                         <input type="submit" class="mdc-button mdc-button--raised mdc-ripple-upgraded"
                                data-mdc-auto-init="MDCRipple" value="Entrar">
                     </div>
+                </div>
             </form>
         </div>
     </main>

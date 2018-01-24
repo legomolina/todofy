@@ -16,14 +16,19 @@ class NotesController extends Controller
 
     public function renderMain()
     {
-        $notes = Note::where("user_id", 0)->get();
+        $notes = Note::where("user_id", Auth::id())->get();
 
         return view("partials/cards", ["notes" => $notes]);
     }
 
     public function renderAddNote()
     {
-        return view("partials/edit");
+        $options = [
+            "action_text" => "Crear",
+            "form_action" => "/note"
+        ];
+
+        return view("partials/edit", ["options" => $options]);
     }
 
     public function addNote(Request $request)
@@ -39,7 +44,7 @@ class NotesController extends Controller
         $note = new Note();
         $note->title = $title;
         $note->body = $body;
-        $note->user_id = 0;
+        $note->user_id = Auth::id();
         $note->color = $colors[random_int(0, count($colors) - 1)];
         $note->token = md5(time());
 
@@ -50,7 +55,13 @@ class NotesController extends Controller
 
     public function renderEditNote($noteId)
     {
-        return view("partials/edit", ["note" => Note::where("token", $noteId)->first()]);
+        $editingNote = Note::where("token", $noteId)->first();
+        $options = [
+            "action_text" => "Editar",
+            "form_action" => "/note/" . $editingNote->token
+        ];
+
+        return view("partials/edit", ["note" => $editingNote, "options" => $options]);
     }
 
     public function editNote(Request $request, $id)
