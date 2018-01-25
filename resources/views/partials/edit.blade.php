@@ -23,12 +23,19 @@
                     </div>
                 </section>
 
+                <md-color-picker id="picker" color-margin="6" colors-per-row="8" color-size="30" default-tint="500"
+                                 fixedMinHeight="true" palette="material-full" use-spectrum-picker="false"
+                                 value="@if (isset($note)) {{ $note->color }} @else #FFFFFF @endif"></md-color-picker>
+                <input type="hidden" name="color" id="color" value="@if (isset($note)) {{ $note->color }} @else #FFFFFF @endif">
+
                 <div class="mdc-form-field visibility-checkbox">
                     <div class="mdc-checkbox">
-                        <input type="checkbox" value="1" @if (isset($note) && $note->visibility == 1) checked @endif id="basic-checkbox" name="visibility" class="mdc-checkbox__native-control">
+                        <input type="checkbox" value="1" @if (isset($note) && $note->visibility == 1) checked
+                               @endif id="basic-checkbox" name="visibility" class="mdc-checkbox__native-control">
                         <div class="mdc-checkbox__background">
                             <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                                <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+                                <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white"
+                                      d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
                             </svg>
                             <div class="mdc-checkbox__mixedmark"></div>
                         </div>
@@ -42,7 +49,8 @@
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                <button class="mdc-button mdc-button--raised mdc-ripple-upgraded" style="margin-right: 20px;" data-mdc-auto-init="MDCRipple">
+                <button class="mdc-button mdc-button--raised mdc-ripple-upgraded" style="margin-right: 20px;"
+                        data-mdc-auto-init="MDCRipple">
                     {{ $options["action_text"] }}
                 </button>
 
@@ -61,6 +69,15 @@
             for (var i = 0, tf; tf = tfs[i]; i++) {
                 mdc.textField.MDCTextField.attachTo(tf);
             }
+
+            var picker = document.getElementById('picker');
+            var colorInput = document.getElementById('color');
+
+            function colorChanged(event) {
+                colorInput.value = picker.value = event.detail[0];
+            }
+
+            picker.addEventListener('change', colorChanged);
         })();
     </script>
 @endsection

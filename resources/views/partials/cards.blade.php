@@ -2,6 +2,27 @@
 
 @section("main-content")
     <main role="main" class="mdc-toolbar-fixed-adjust">
+        <div class="select-container">
+            <div class="mdc-select" id="view" role="listbox" style="width: 150px">
+                <div class="mdc-select__surface" tabindex="0">
+                    <div class="mdc-select__label">Ver</div>
+                    <div class="mdc-select__selected-text"></div>
+                    <div class="mdc-select__bottom-line"></div>
+                </div>
+
+                <div class="mdc-simple-menu mdc-select__menu">
+                    <ul class="mdc-list mdc-simple-menu__items">
+                        <li class="mdc-list-item" role="option" tabindex="0">
+                            Todas
+                        </li>
+                        <li class="mdc-list-item" role="option" tabindex="0">
+                            Mías
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <div class="container">
             @forelse ($notes as $note)
 
@@ -32,7 +53,7 @@
                             @endif
 
                         @else
-                            <div style="position: absolute; margin-top: 20px; font-size: 0.8em;"><em>Usuario: {{ $note->user->name }}</em></div>
+                            <div class="card-user"><em>Usuario: {{ $note->user->name }}</em></div>
                         @endif
                     </section>
                 </div>
@@ -80,13 +101,13 @@
     <script>
         var dialog = new mdc.dialog.MDCDialog(document.querySelector('#remove-dialog'));
 
+        mdc.select.MDCSelect.attachTo(document.getElementById('view'));
+
         dialog.listen('MDCDialog:accept', function () {
             var id = $(this).attr("data-card-token");
             var card = $(".card").filter(function (index, el) {
                 return $(el).attr("data-token") === id;
             });
-
-            console.log(id);
 
             $.ajax({
                 url: "/note/" + id,
