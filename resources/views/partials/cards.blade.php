@@ -2,27 +2,6 @@
 
 @section("main-content")
     <main role="main" class="mdc-toolbar-fixed-adjust">
-        <div class="select-container">
-            <div class="mdc-select" id="view" role="listbox" style="width: 150px">
-                <div class="mdc-select__surface" tabindex="0">
-                    <div class="mdc-select__label">Ver</div>
-                    <div class="mdc-select__selected-text"></div>
-                    <div class="mdc-select__bottom-line"></div>
-                </div>
-
-                <div class="mdc-simple-menu mdc-select__menu">
-                    <ul class="mdc-list mdc-simple-menu__items">
-                        <li class="mdc-list-item" role="option" tabindex="0">
-                            Todas
-                        </li>
-                        <li class="mdc-list-item" role="option" tabindex="0">
-                            Mías
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
         <div class="container">
             @forelse ($notes as $note)
 
@@ -66,13 +45,21 @@
     </main>
 
     <form action="/note" method="get">
-        <button class="mdc-fab material-icons app-fab--absolute" data-mdc-auto-init="MDCRipple"
+        <button class="add-note mdc-fab material-icons app-fab--absolute" data-mdc-auto-init="MDCRipple"
                 aria-label="Añadir nota">
             <span class="mdc-fab__icon">
                 add
             </span>
         </button>
     </form>
+
+    <button title="@if($viewing === "a") Mostrar mías @else Mostrar todas @endif" id="visibility-button" class="visibility-button mdc-fab material-icons app-fab--absolute" data-mdc-auto-init="MDCRipple"
+            aria-label="Visibilidad">
+            <span class="mdc-fab__icon">
+                @if($viewing === "m") visibility_off @else visibility @endif
+            </span>
+    </button>
+
 
     <aside id="remove-dialog"
            class="mdc-dialog"
@@ -100,8 +87,6 @@
 
     <script>
         var dialog = new mdc.dialog.MDCDialog(document.querySelector('#remove-dialog'));
-
-        mdc.select.MDCSelect.attachTo(document.getElementById('view'));
 
         dialog.listen('MDCDialog:accept', function () {
             var id = $(this).attr("data-card-token");
@@ -134,6 +119,15 @@
             dialog.lastFocusedTarget = evt.target;
             $("#remove-dialog").attr("data-card-token", $(this).parents(".card").attr("data-token"));
             dialog.show();
+        });
+
+        $("#visibility-button").on("click", function() {
+            console.log($(this).find("span").text().trim());
+
+            if($(this).find("span").text().trim() === "visibility")
+                location.replace("/?view=m");
+            else
+                location.replace("/?view=a");
         });
     </script>
 @endsection

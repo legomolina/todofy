@@ -513,16 +513,33 @@ a.add-note {
   text-decoration: none;
 }
 
-.app-fab--absolute {
+.add-note {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
 }
 
+.visibility-button {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.8rem;
+  width: 30px;
+  height: 30px;
+}
+
+.visibility-button span {
+  font-size: .7em;
+}
+
 @media (min-width: 1024px) {
-  .app-fab--absolute {
+  .add-note {
     bottom: 1.5rem;
     right: 1.5rem;
+  }
+
+  .visibility-button {
+    right: 2.4rem;
+    bottom: 5.5rem;
   }
 }
 

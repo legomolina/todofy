@@ -10,7 +10,7 @@
                   class="note-form">
                 <div class="mdc-text-field mdc-text-field--upgraded">
                     <input name="title" class="mdc-text-field__input" id="my-text-field"
-                           aria-controls="my-text-field-helper-text" type="text" value="{{ $note->title or "" }}">
+                           maxlength="30" aria-controls="my-text-field-helper-text" type="text" value="{{ $note->title or "" }}">
                     <label for="my-text-field" class="mdc-text-field__label">Titulo</label>
                     <div class="mdc-text-field__bottom-line" style="transform-origin: 45.5px center"></div>
                 </div>

@@ -14,11 +14,18 @@ class NotesController extends Controller
         $this->middleware('auth');
     }
 
-    public function renderMain()
+    public function renderMain(Request $request)
     {
-        $notes = Note::where("user_id", Auth::id())->orWhere("visibility", 1)->get();
+        $view = $request->input("view");
 
-        return view("partials/cards", ["notes" => $notes]);
+        $notes = [];
+
+        if($view === null || $view === "a")
+            $notes = Note::where("user_id", Auth::id())->orWhere("visibility", 1)->get();
+        else
+            $notes = Note::where("user_id", Auth::id())->get();
+
+        return view("partials/cards", ["notes" => $notes, "viewing" => $view]);
     }
 
     public function renderAddNote()
